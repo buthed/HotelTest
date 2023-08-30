@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/hotelFragment">
 
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.tematihonov.hoteltest.presentation.ui.fragment.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_hotelFragment"
-            app:destination="@id/hotelFragment"
-            app:popUpTo="@id/mainFragment"/>
-    </fragment>
     <fragment
         android:id="@+id/hotelFragment"
         android:name="com.tematihonov.hoteltest.presentation.ui.fragment.HotelFragment"
         android:label="fragment_hotel"
         tools:layout="@layout/fragment_hotel" >
         <action
-            android:id="@+id/action_hotelFragment_to_bookingFragment2"
-            app:destination="@id/bookingFragment2"
+            android:id="@+id/action_hotelFragment_to_roomsFragment"
+            app:destination="@id/roomsFragment"
             app:popUpTo="@id/hotelFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/roomsFragment"
+        android:name="com.tematihonov.hoteltest.presentation.ui.fragment.RoomsFragment"
+        android:label="fragment_rooms"
+        tools:layout="@layout/fragment_rooms" >
+        <action
+            android:id="@+id/action_roomsFragment_to_bookingFragment2"
+            app:destination="@id/bookingFragment2"
+            app:popUpTo="@id/roomsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/bookingFragment2"
@@ -31,9 +31,9 @@
         android:label="fragment_booking"
         tools:layout="@layout/fragment_booking" >
         <action
-            android:id="@+id/action_bookingFragment2_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popUpTo="@id/mainFragment"
+            android:id="@+id/action_bookingFragment2_to_hotelFragment"
+            app:destination="@id/hotelFragment"
+            app:popUpTo="@id/hotelFragment"
             app:popUpToInclusive="false"/>
     </fragment>
 </navigation>

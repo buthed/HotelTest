@@ -26,7 +26,7 @@ class BookingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.text.setOnClickListener {
-            findNavController().popBackStack(R.id.mainFragment, false)
+            findNavController().popBackStack(R.id.hotelFragment, false)
         }
     }
 

@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.tematihonov.hoteltest.R
-import com.tematihonov.hoteltest.databinding.FragmentMainBinding
+import com.tematihonov.hoteltest.databinding.FragmentRoomsBinding
 
-class MainFragment : Fragment() {
+class RoomsFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentRoomsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container,false)
+        _binding = FragmentRoomsBinding.inflate(inflater, container,false)
         return binding.root
     }
 
@@ -26,7 +26,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.text.setOnClickListener {
-            findNavController().navigate(R.id.action_mainFragment_to_hotelFragment)
+            findNavController().navigate(R.id.action_roomsFragment_to_bookingFragment2)
         }
     }
 

@@ -26,7 +26,7 @@ class HotelFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.text.setOnClickListener {
-            findNavController().navigate(R.id.action_hotelFragment_to_bookingFragment2)
+            findNavController().navigate(R.id.action_hotelFragment_to_roomsFragment)
         }
     }
 
