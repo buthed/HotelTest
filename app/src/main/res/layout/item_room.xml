@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/room_item_rounded_corners"
+    tools:ignore="ContentDescription" >
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/black"/>
+
+        <TextView
+            android:id="@+id/room_name"
+            android:paddingVertical="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h2"
+            tools:text="Стандартный с видом на бассейн или сад"/>
+
+        <!-- //TODO about_the_room peculiarities  -->
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="29dp">
+
+            <LinearLayout
+                android:background="@drawable/rooms_details_rounded_corners"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="29dp">
+
+                <TextView
+                    android:text="@string/rooms_details"
+                    android:id="@+id/hotel_rating_name"
+                    android:textSize="@dimen/body1"
+                    android:textColor="@color/blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp" />
+
+                <ImageView
+                    android:src="@drawable/icon_arrow"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@color/blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="12dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp">
+
+            <TextView
+                android:id="@+id/room_price"
+                android:textSize="@dimen/h1"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="от 134 673 ₽"/>
+
+            <TextView
+                android:id="@+id/room_price_per"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="за тур с перелётом"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_marginVertical="16dp"
+            android:text="@string/rooms_choose_room"
+            android:backgroundTint="@color/blue_button"
+            android:layout_width="match_parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="28dp"
+            android:layout_height="48dp">
+        </Button>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

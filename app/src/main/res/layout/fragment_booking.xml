@@ -1,15 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.fragment.BookingFragment">
+    tools:context=".presentation.ui.fragment.HotelFragment"
+    tools:ignore="ContentDescription">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Booking" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/white_rounded_corners"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="29dp">
+
+                <LinearLayout
+                    android:background="@drawable/hotel_grade_rounded_corners"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="29dp">
+
+                    <ImageView
+                        android:src="@drawable/icon_star"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"/>
+
+                    <TextView
+                        android:id="@+id/hotel_rating"
+                        android:layout_marginStart="3dp"
+                        android:textSize="@dimen/body1"
+                        android:textColor="@color/grade_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="5"/>
+
+                    <TextView
+                        android:id="@+id/hotel_rating_name"
+                        android:layout_marginStart="5dp"
+                        android:textSize="@dimen/body1"
+                        android:textColor="@color/grade_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Превосходно"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/hotel_name"
+                android:paddingVertical="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h2"
+                tools:text="Steigenberger Makadi"/>
+
+            <TextView
+                android:id="@+id/hotel_address"
+                android:textSize="@dimen/body2"
+                android:textColor="@color/blue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/white_rounded_corners"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_departure"
+                    android:textColor="@color/grey"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/body1"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:text="@string/booking_departure"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"
+                    tools:text="Санкт-Петербург"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_arrival_country"
+                    android:textColor="@color/grey"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/body1"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:text="@string/booking_departure"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"
+                    tools:text="Египет, Хургада"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_dates"
+                    android:textColor="@color/grey"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/body1"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:text="@string/booking_departure"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"
+                    tools:text="19.09.2023 – 27.09.2023"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_number_of_nights"
+                    android:textColor="@color/grey"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/body1"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:text="@string/booking_departure"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"
+                    tools:text="7 ночей"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_hotel"
+                    android:textColor="@color/grey"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/body1"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:text="@string/booking_departure"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"
+                    tools:text="Steigenberger Makadi"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_room"
+                    android:textColor="@color/grey"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/body1"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:text="@string/booking_departure"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"
+                    tools:text="Стандартный с видом на бассейн или сад"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_nutrition"
+                    android:textColor="@color/grey"
+                    android:layout_width="0dp"
+                    android:textSize="@dimen/body1"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:text="@string/booking_departure"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textSize="@dimen/body1"
+
+                    android:layout_height="match_parent"
+                    tools:text="Все включено"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/white_rounded_corners"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear2">
+
+            <TextView
+                android:text="@string/booking_buyer_information"
+                android:textSize="@dimen/h2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
