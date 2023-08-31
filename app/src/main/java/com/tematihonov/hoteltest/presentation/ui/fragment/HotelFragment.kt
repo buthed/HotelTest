@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.tematihonov.hoteltest.databinding.FragmentHotelBinding
 
 class HotelFragment : Fragment() {
@@ -23,9 +24,11 @@ class HotelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.text.setOnClickListener {
-//            findNavController().navigate(R.id.action_hotelFragment_to_roomsFragment)
-//        }
+
+        binding.buttonHotelToChoose.setOnClickListener {
+            val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment("Some Hotel") //TODO add hotel name
+            Navigation.findNavController(view).navigate(action)
+        }
     }
 
     override fun onDestroyView() {

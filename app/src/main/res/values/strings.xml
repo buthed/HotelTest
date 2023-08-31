@@ -12,13 +12,8 @@
 
     <string name="rooms_choose_room">Выбрать номер</string>
     <string name="rooms_details">Подробнее о номере</string>
-    <string name="order_processed">Ваш заказ принят в работу</string>
-    <string name="order_confirmation">Подтверждение заказа №104893 может\n
-        занять некоторое время (от 1 часа до суток).\n
-        Как только мы получим ответ от\n
-        туроператора, вам на почту придет\n
-        уведомление.</string>
 
+    <string name="booking_title">Бронирование</string>
     <string name="booking_departure">Вылет из</string>
     <string name="booking_arrival_country">Страна, город</string>
     <string name="booking_dates">Даты</string>
@@ -27,5 +22,16 @@
     <string name="booking_room">Номер</string>
     <string name="booking_nutrition">Питание</string>
     <string name="booking_buyer_information">Информация о покупателе</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="order_title">Заказ оплачен</string>
+    <string name="order_processed">Ваш заказ принят в работу</string>
+    <string name="order_confirmation">Подтверждение заказа №104893 может\n
+        занять некоторое время (от 1 часа до суток).\n
+        Как только мы получим ответ от\n
+        туроператора, вам на почту придет\n
+        уведомление.</string>
+
 
 </resources>

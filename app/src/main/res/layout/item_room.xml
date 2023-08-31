@@ -5,12 +5,12 @@
     android:paddingTop="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/room_item_rounded_corners"
+    android:background="@color/background"
     tools:ignore="ContentDescription" >
 
     <LinearLayout
         android:id="@+id/linear1"
-        android:background="@color/white"
+        android:background="@drawable/room_item_rounded_corners"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"

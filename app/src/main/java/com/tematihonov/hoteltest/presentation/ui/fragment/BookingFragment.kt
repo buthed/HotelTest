@@ -25,8 +25,12 @@ class BookingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.text.setOnClickListener {
-            findNavController().popBackStack(R.id.hotelFragment, false)
+        binding.appBar.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.linear3.setOnClickListener {
+            findNavController().navigate(R.id.action_bookingFragment2_to_orderFragment)
         }
     }
 

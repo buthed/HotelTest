@@ -6,22 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.tematihonov.hoteltest.R
-import com.tematihonov.hoteltest.databinding.FragmentRoomsBinding
+import com.tematihonov.hoteltest.databinding.FragmentOrderBinding
 
-class RoomsFragment : Fragment() {
+class OrderFragment : Fragment() {
 
-    private var _binding: FragmentRoomsBinding? = null
+    private var _binding: FragmentOrderBinding? = null
     private val binding get() = _binding!!
-
-    val args: RoomsFragmentArgs by navArgs() //TODO use
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentRoomsBinding.inflate(inflater, container,false)
+        _binding = FragmentOrderBinding.inflate(inflater, container,false)
         return binding.root
     }
 
@@ -31,8 +28,8 @@ class RoomsFragment : Fragment() {
         binding.appBar.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.text.setOnClickListener {
-            findNavController().navigate(R.id.action_roomsFragment_to_bookingFragment2)
+        binding.buttonSuper.setOnClickListener {
+            findNavController().popBackStack(R.id.hotelFragment, false)
         }
     }
 
