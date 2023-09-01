@@ -2,22 +2,25 @@ package com.tematihonov.hoteltest.presentation.ui.fragment
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.tematihonov.hoteltest.R
 import com.tematihonov.hoteltest.databinding.FragmentHotelBinding
 import com.tematihonov.hoteltest.presentation.ui.rcview.hotelimageslist.HotelImagesAdapter
+import com.tematihonov.hoteltest.presentation.viewmodel.HotelViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HotelFragment : Fragment() {
 
     private var _binding: FragmentHotelBinding? = null
     private val binding get() = _binding!!
 
+    private val hotelViewModel by viewModel<HotelViewModel>()
     private lateinit var viewPager2: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +38,14 @@ class HotelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.buttonHotelToChoose.setOnClickListener {
             val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment("Some Hotel") //TODO add hotel name
             Navigation.findNavController(view).navigate(action)
         }
+        binding.hotelName.setOnClickListener {
+            Log.d("GGG","${hotelViewModel.arb}")
+        }
+        hotelViewModel.initHotel()
 
         hotelCarousel()
     }
