@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="49dp">
@@ -34,9 +34,63 @@
                     android:layout_gravity="center"
                     android:text="@string/hotel_title"
                     android:textSize="@dimen/h3" />
-            </Toolbar>
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/carousel"
+            android:layout_width="match_parent"
+            android:layout_height="257dp"
+            android:background="@color/white"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:background="@color/white"
+            app:cardCornerRadius="5dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/carousel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hotel_carousel_cv1"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    app:cardCornerRadius="100dp"
+                    android:backgroundTint="@color/carousel_grey"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hotel_carousel_cv2"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    android:layout_marginHorizontal="7dp"
+                    app:cardCornerRadius="100dp"
+                    android:backgroundTint="@color/carousel_grey"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hotel_carousel_cv3"
+                    android:layout_width="7dp"
+                    android:layout_height="7dp"
+                    app:cardCornerRadius="100dp"
+                    android:backgroundTint="@color/carousel_grey"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/linear1"
@@ -48,15 +102,9 @@
             android:gravity="center_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="@color/black"/>
+            app:layout_constraintTop_toBottomOf="@id/carousel">
 
             <!-- //TODO add corousel -->
-
 
             <LinearLayout
                 android:layout_marginTop="16dp"
@@ -76,7 +124,7 @@
                         android:src="@drawable/icon_star"
                         android:layout_width="15dp"
                         android:layout_height="15dp"/>
-                    
+
                     <TextView
                         android:id="@+id/hotel_rating"
                         android:layout_marginStart="3dp"
@@ -98,8 +146,8 @@
                 </LinearLayout>
 
             </LinearLayout>
-            
-            
+
+
             <TextView
                 android:id="@+id/hotel_name"
                 android:paddingVertical="8dp"
