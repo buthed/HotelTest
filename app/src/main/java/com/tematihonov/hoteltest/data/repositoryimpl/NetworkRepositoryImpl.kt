@@ -5,12 +5,13 @@ import com.tematihonov.hoteltest.data.models.responceRooms.Room
 import com.tematihonov.hoteltest.data.models.responseHotel.Hotel
 import com.tematihonov.hoteltest.data.network.ApiService
 import com.tematihonov.hoteltest.domain.repository.NetworkRepository
+import retrofit2.Response
 
 class NetworkRepositoryImpl(
     private val api: ApiService
 ): NetworkRepository {
 
-    override suspend fun getHotel(): Hotel {
+    override suspend fun getHotel(): Response<Hotel> {
         return api.getHotel()
     }
 
