@@ -6,6 +6,8 @@
     <color name="blue_button">#0068f6</color>
     <color name="grey">#FF828796</color>
     <color name="carousel_grey">#c7c7c7</color>
+    <color name="peculiarities_background">#fbfbfc</color>
+    <color name="peculiarities_text">#818695</color>
     <color name="grade_background">#fff5d0</color>
     <color name="grade_text">#ffad39</color>
     <color name="grade">#fff5d0</color>

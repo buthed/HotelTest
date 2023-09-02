@@ -3,16 +3,17 @@ package com.tematihonov.hoteltest.presentation.ui.fragment
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.tematihonov.hoteltest.R
 import com.tematihonov.hoteltest.databinding.FragmentHotelBinding
 import com.tematihonov.hoteltest.presentation.ui.rcview.hotelimageslist.HotelImagesAdapter
+import com.tematihonov.hoteltest.presentation.ui.rcview.peculiaritylist.PeculiarityListAdapter
 import com.tematihonov.hoteltest.presentation.viewmodel.HotelViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,6 +23,7 @@ class HotelFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val hotelViewModel by viewModel<HotelViewModel>()
+    private lateinit var adapter: PeculiarityListAdapter
     private lateinit var viewPager2: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,7 @@ class HotelFragment : Fragment() {
 
         checkDataAndSetNewValues()
 
+
         binding.buttonHotelToChoose.setOnClickListener {
             val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment(hotelViewModel.hotelModel.value?.name
                 ?: "") //TODO add to fun?
@@ -53,6 +56,7 @@ class HotelFragment : Fragment() {
             if (it == false) {
                 hotelViewModel.hotelModel.observe(viewLifecycleOwner) { hotel ->
                     hotelCarousel(hotel.image_urls)
+                    hotelPeculiarities()
                     hotelName.text = hotel.name
                     hotelAddress.text = hotel.adress
                     hotelMinimalPrice.text =
@@ -62,10 +66,17 @@ class HotelFragment : Fragment() {
                     hotelRatingName.text = hotel.rating_name
                     hotelAboutTheHotelDescription.text = hotel.about_the_hotel.description
                     //TODO add peculiarities
-                    Log.d("GGG", "Success ${hotel.name}")
+                    adapter.peculiarities = hotel.about_the_hotel.peculiarities
                 }
             }
         }
+    }
+
+    private fun hotelPeculiarities() {
+        adapter = PeculiarityListAdapter()
+        val layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL)
+        binding.hotelAboutPeculiarities.layoutManager = layoutManager
+        binding.hotelAboutPeculiarities.adapter = adapter
     }
 
     private fun hotelCarousel(imageUrls: List<String>) {
