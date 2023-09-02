@@ -40,7 +40,6 @@ class HotelFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         checkDataAndSetNewValues()
-        hotelCarousel()
 
         binding.buttonHotelToChoose.setOnClickListener {
             val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment(hotelViewModel.hotelModel.value?.name
@@ -53,6 +52,7 @@ class HotelFragment : Fragment() {
         hotelViewModel.isLoading.observe(viewLifecycleOwner) {
             if (it == false) {
                 hotelViewModel.hotelModel.observe(viewLifecycleOwner) { hotel ->
+                    hotelCarousel(hotel.image_urls)
                     hotelName.text = hotel.name
                     hotelAddress.text = hotel.adress
                     hotelMinimalPrice.text =
@@ -62,17 +62,15 @@ class HotelFragment : Fragment() {
                     hotelRatingName.text = hotel.rating_name
                     hotelAboutTheHotelDescription.text = hotel.about_the_hotel.description
                     //TODO add peculiarities
-                    //TODO add carousel images
                     Log.d("GGG", "Success ${hotel.name}")
                 }
             }
         }
     }
 
-    private fun hotelCarousel() {
+    private fun hotelCarousel(imageUrls: List<String>) {
         viewPager2 = binding.carousel
-        val images =
-            listOf(R.drawable.carusel_test1, R.drawable.carusel_test2, R.drawable.carusel_test3)
+        val images = listOf(imageUrls[0], imageUrls[1], imageUrls[2])
         val adapter = HotelImagesAdapter(images)
         viewPager2.adapter = adapter
 
