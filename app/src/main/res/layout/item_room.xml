@@ -84,6 +84,16 @@
 
         <!-- //TODO about_the_room peculiarities  -->
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/room_peculiarities"
+            android:orientation="horizontal"
+            android:clipToPadding="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/item_peculiarity"
+            tools:itemCount="5"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="29dp"

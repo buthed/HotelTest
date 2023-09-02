@@ -6,12 +6,14 @@ import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.tematihonov.hoteltest.R
 import com.tematihonov.hoteltest.data.models.responceRooms.Room
 import com.tematihonov.hoteltest.databinding.ItemRoomBinding
 import com.tematihonov.hoteltest.presentation.ui.rcview.hotelimageslist.HotelImagesAdapter
+import com.tematihonov.hoteltest.presentation.ui.rcview.peculiaritylist.PeculiarityListAdapter
 
 class RoomsListAdapter() : RecyclerView.Adapter<RoomsListAdapter.RoomsListViewHolder>() {
 
@@ -56,9 +58,20 @@ class RoomsListAdapter() : RecyclerView.Adapter<RoomsListAdapter.RoomsListViewHo
                 rListener.onClick(position)
             }
             roomCarousel(room.image_urls, holder.binding)
+            roomPeculiarities(room.peculiarities, holder.binding)
             //TODO add peculiarities
+
         }
     }
+
+    private fun roomPeculiarities(peculiarities: List<String>, binding: ItemRoomBinding) {
+        val adapter = PeculiarityListAdapter()
+        val layoutManager = GridLayoutManager(this.context, 2) //TODO recheck
+        binding.roomPeculiarities.layoutManager = layoutManager
+        binding.roomPeculiarities.adapter = adapter
+        adapter.peculiarities = peculiarities
+    }
+
 
     fun roomCarousel(imageUrls: List<String>, binding: ItemRoomBinding) {
         var viewPager2: ViewPager2 = binding.carousel
