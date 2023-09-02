@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.tematihonov.hoteltest.R
@@ -40,33 +39,32 @@ class HotelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkDataAndSetNewValues()
+        hotelCarousel()
+
         binding.buttonHotelToChoose.setOnClickListener {
-            val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment("Some Hotel") //TODO add hotel name
+            val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment(hotelViewModel.hotelModel.value?.name
+                ?: "") //TODO add to fun?
             Navigation.findNavController(view).navigate(action)
         }
-        binding.hotelName.setOnClickListener {
-            Log.d("GGG","${hotelViewModel.arb}")
-        }
-
-        checkDataAndSetNewValues()
-
-        hotelCarousel()
     }
 
     private fun checkDataAndSetNewValues() = with(binding) {
         hotelViewModel.isLoading.observe(viewLifecycleOwner) {
             if (it == false) {
-                hotelViewModel.hotelModel.observe(viewLifecycleOwner, Observer { hotel->
+                hotelViewModel.hotelModel.observe(viewLifecycleOwner) { hotel ->
                     hotelName.text = hotel.name
                     hotelAddress.text = hotel.adress
-                    hotelMinimalPrice.text = "от ${hotel.minimal_price} ${Html.fromHtml(" &#x20bd")}"
+                    hotelMinimalPrice.text =
+                        "от ${hotel.minimal_price} ${Html.fromHtml(" &#x20bd")}" //TODO fix?
                     hotelPriceForIt.text = hotel.price_for_it
                     hotelRating.text = hotel.rating.toString()
                     hotelRatingName.text = hotel.rating_name
                     hotelAboutTheHotelDescription.text = hotel.about_the_hotel.description
                     //TODO add peculiarities
+                    //TODO add carousel images
                     Log.d("GGG", "Success ${hotel.name}")
-                })
+                }
             }
         }
     }
@@ -111,7 +109,7 @@ class HotelFragment : Fragment() {
                 binding.hotelCarouselCv1.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.carousel_grey))
                 binding.hotelCarouselCv2.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.carousel_grey))
                 binding.hotelCarouselCv3.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.black))
-            } //TODO del depricated
+            } //TODO del deprecaited
         }
     }
 
@@ -119,6 +117,4 @@ class HotelFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-    
 }

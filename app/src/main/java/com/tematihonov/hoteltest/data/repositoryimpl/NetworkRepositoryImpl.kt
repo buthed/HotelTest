@@ -1,7 +1,7 @@
 package com.tematihonov.hoteltest.data.repositoryimpl
 
 import com.tematihonov.hoteltest.data.models.responceBooking.Booking
-import com.tematihonov.hoteltest.data.models.responceRooms.Room
+import com.tematihonov.hoteltest.data.models.responceRooms.Rooms
 import com.tematihonov.hoteltest.data.models.responseHotel.Hotel
 import com.tematihonov.hoteltest.data.network.ApiService
 import com.tematihonov.hoteltest.domain.repository.NetworkRepository
@@ -15,7 +15,7 @@ class NetworkRepositoryImpl(
         return api.getHotel()
     }
 
-    override suspend fun getRooms(): List<Room> {
+    override suspend fun getRooms(): Response<Rooms> {
         return api.getRooms()
     }
 

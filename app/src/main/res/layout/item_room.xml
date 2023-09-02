@@ -48,7 +48,8 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="29dp">
+                android:layout_height="29dp"
+                tools:ignore="UselessParent">
 
                 <TextView
                     android:text="@string/rooms_details"
@@ -93,6 +94,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/button_choose_room"
             android:layout_marginVertical="16dp"
             android:text="@string/rooms_choose_room"
             android:backgroundTint="@color/blue_button"

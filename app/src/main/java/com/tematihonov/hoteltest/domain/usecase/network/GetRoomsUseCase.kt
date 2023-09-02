@@ -1,12 +1,13 @@
 package com.tematihonov.hoteltest.domain.usecase.network
 
-import com.tematihonov.hoteltest.data.models.responceRooms.Room
+import com.tematihonov.hoteltest.data.models.responceRooms.Rooms
 import com.tematihonov.hoteltest.domain.repository.NetworkRepository
+import retrofit2.Response
 
 class GetRoomsUseCase(
     private val networkRepository: NetworkRepository
 ) {
-    suspend fun invoke(): List<Room> {
+    suspend fun invoke(): Response<Rooms> {
         return networkRepository.getRooms()
     }
 }
