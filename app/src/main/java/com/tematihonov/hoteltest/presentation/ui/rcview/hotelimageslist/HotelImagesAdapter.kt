@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.tematihonov.hoteltest.R
 
-class HotelImagesAdapter(private val images: List<Int>): RecyclerView.Adapter<HotelImagesAdapter.ViewPagerViewHolder>() {
+class HotelImagesAdapter(private val images: List<String>): RecyclerView.Adapter<HotelImagesAdapter.ViewPagerViewHolder>() {
 
     inner class ViewPagerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -21,7 +22,7 @@ class HotelImagesAdapter(private val images: List<Int>): RecyclerView.Adapter<Ho
 
     override fun onBindViewHolder(holder: HotelImagesAdapter.ViewPagerViewHolder, position: Int) {
         val currentImage = images[position]
-        holder.imageView.setImageResource(currentImage)
+        holder.imageView.load(currentImage)
     }
 
     override fun getItemCount(): Int {
