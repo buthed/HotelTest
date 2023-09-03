@@ -19,7 +19,7 @@ class NetworkRepositoryImpl(
         return api.getRooms()
     }
 
-    override suspend fun getBooking(): Booking {
+    override suspend fun getBooking(): Response<Booking> {
         return api.getBooking()
     }
 }

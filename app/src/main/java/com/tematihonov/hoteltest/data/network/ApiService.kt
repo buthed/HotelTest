@@ -16,5 +16,5 @@ interface ApiService {
     suspend fun getRooms(): Response<Rooms>
 
     @GET(RetrofitConstants.BOOKING)
-    suspend fun getBooking(): Booking
+    suspend fun getBooking(): Response<Booking>
 }

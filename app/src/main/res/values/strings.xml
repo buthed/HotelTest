@@ -2,6 +2,7 @@
     <string name="app_name">HotelTest</string>
     <string name="btn_super">Супер!</string>
 
+    <!-- Hotel-->
     <string name="hotel_title">Отель</string>
     <string name="hotel_about">Об отеле</string>
     <string name="hotel_facilities">Удобства</string>
@@ -10,21 +11,45 @@
     <string name="hotel_essentials">Самое необходимое</string>
     <string name="hotel_to_choose">К выбору номера</string>
 
+    <!-- Rooms-->
     <string name="rooms_choose_room">Выбрать номер</string>
     <string name="rooms_details">Подробнее о номере</string>
 
+    <!-- Booking-->
     <string name="booking_title">Бронирование</string>
     <string name="booking_departure">Вылет из</string>
     <string name="booking_arrival_country">Страна, город</string>
     <string name="booking_dates">Даты</string>
+    <string name="booking_dates_set_text">%1$s - %2$s</string>
     <string name="booking_number_of_nights">Кол-во ночей</string>
     <string name="booking_hotel">Отель</string>
     <string name="booking_room">Номер</string>
     <string name="booking_nutrition">Питание</string>
     <string name="booking_buyer_information">Информация о покупателе</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="booking_this_data">Эти данные никому не передаются. После оплаты мы\nвышлeм чек на указанный вами номер и почту</string>
+    <string name="booking_tour">Тур</string>
+    <string name="booking_fuel_charge">Топливный сбор</string>
+    <string name="booking_service_charge">Сервисный сбор</string>
+    <string name="booking_to_pay">К оплате</string>
+    <string name="booking_to_pay_btn">Оплатить %1$s ₽</string>
+    <string name="booking_price_set_text">%1$s ₽</string>
+    <string name="booking_input_phone">Номер телефона</string>
+    <string name="booking_input_mail">Почта</string>
+    <string name="booking_tourist_one">Первый турист</string>
+    <string name="booking_tourist_two">Второй турист</string>
+    <string name="booking_tourist_three">Третий турист</string>
+    <string name="booking_tourist_add">Добавить туриста</string>
+    <string name="booking_tourist_name">Имя</string>
+    <string name="booking_tourist_name_second">Фамилия</string>
+    <string name="booking_tourist_date_of_birth">Дата рождения</string>
+    <string name="booking_tourist_citizenship">Гражданство</string>
+    <string name="booking_tourist_passport_number">Номер загранпаспорта</string>
+    <string name="booking_tourist_name_passport_validity_period">Срок действия загранпаспорта</string>
 
+
+
+
+    <!-- Order-->
     <string name="order_title">Заказ оплачен</string>
     <string name="order_processed">Ваш заказ принят в работу</string>
     <string name="order_confirmation">Подтверждение заказа №104893 может\n
@@ -32,6 +57,5 @@
         Как только мы получим ответ от\n
         туроператора, вам на почту придет\n
         уведомление.</string>
-
 
 </resources>

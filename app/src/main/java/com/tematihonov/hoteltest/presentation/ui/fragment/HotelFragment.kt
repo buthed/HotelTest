@@ -2,7 +2,6 @@ package com.tematihonov.hoteltest.presentation.ui.fragment
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,8 +58,7 @@ class HotelFragment : Fragment() {
                     hotelPeculiarities()
                     hotelName.text = hotel.name
                     hotelAddress.text = hotel.adress
-                    hotelMinimalPrice.text =
-                        "от ${hotel.minimal_price} ${Html.fromHtml(" &#x20bd")}" //TODO fix?
+                    hotelMinimalPrice.text = "от ${hotel.minimal_price} ₽"
                     hotelPriceForIt.text = hotel.price_for_it
                     hotelRating.text = hotel.rating.toString()
                     hotelRatingName.text = hotel.rating_name

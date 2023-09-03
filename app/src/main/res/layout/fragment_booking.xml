@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
@@ -34,7 +34,7 @@
                     android:layout_gravity="center"
                     android:text="@string/booking_title"
                     android:textSize="@dimen/h3" />
-            </Toolbar>
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
@@ -127,15 +127,13 @@
                 <TextView
                     android:text="@string/booking_departure"
                     android:textColor="@color/grey"
-                    android:layout_width="0dp"
+                    android:layout_width="140dp"
                     android:textSize="@dimen/body1"
-                    android:layout_weight="2"
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:text="@string/booking_departure"
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
+                    android:id="@+id/booking_departure"
+                    android:layout_width="match_parent"
                     android:textSize="@dimen/body1"
                     android:layout_height="match_parent"
                     tools:text="Санкт-Петербург"/>
@@ -150,15 +148,13 @@
                 <TextView
                     android:text="@string/booking_arrival_country"
                     android:textColor="@color/grey"
-                    android:layout_width="0dp"
+                    android:layout_width="140dp"
                     android:textSize="@dimen/body1"
-                    android:layout_weight="2"
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:text="@string/booking_departure"
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
+                    android:id="@+id/booking_arrival_country"
+                    android:layout_width="match_parent"
                     android:textSize="@dimen/body1"
                     android:layout_height="match_parent"
                     tools:text="Египет, Хургада"/>
@@ -173,15 +169,13 @@
                 <TextView
                     android:text="@string/booking_dates"
                     android:textColor="@color/grey"
-                    android:layout_width="0dp"
+                    android:layout_width="140dp"
                     android:textSize="@dimen/body1"
-                    android:layout_weight="2"
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:text="@string/booking_departure"
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
+                    android:id="@+id/booking_dates"
+                    android:layout_width="match_parent"
                     android:textSize="@dimen/body1"
                     android:layout_height="match_parent"
                     tools:text="19.09.2023 – 27.09.2023"/>
@@ -196,15 +190,13 @@
                 <TextView
                     android:text="@string/booking_number_of_nights"
                     android:textColor="@color/grey"
-                    android:layout_width="0dp"
+                    android:layout_width="140dp"
                     android:textSize="@dimen/body1"
-                    android:layout_weight="2"
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:text="@string/booking_departure"
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
+                    android:id="@+id/booking_number_of_nights"
+                    android:layout_width="match_parent"
                     android:textSize="@dimen/body1"
                     android:layout_height="match_parent"
                     tools:text="7 ночей"/>
@@ -219,15 +211,13 @@
                 <TextView
                     android:text="@string/booking_hotel"
                     android:textColor="@color/grey"
-                    android:layout_width="0dp"
+                    android:layout_width="140dp"
                     android:textSize="@dimen/body1"
-                    android:layout_weight="2"
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:text="@string/booking_departure"
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
+                    android:id="@+id/booking_hotel"
+                    android:layout_width="match_parent"
                     android:textSize="@dimen/body1"
                     android:layout_height="match_parent"
                     tools:text="Steigenberger Makadi"/>
@@ -242,15 +232,13 @@
                 <TextView
                     android:text="@string/booking_room"
                     android:textColor="@color/grey"
-                    android:layout_width="0dp"
+                    android:layout_width="140dp"
                     android:textSize="@dimen/body1"
-                    android:layout_weight="2"
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:text="@string/booking_departure"
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
+                    android:id="@+id/booking_room"
+                    android:layout_width="match_parent"
                     android:textSize="@dimen/body1"
                     android:layout_height="match_parent"
                     tools:text="Стандартный с видом на бассейн или сад"/>
@@ -265,17 +253,14 @@
                 <TextView
                     android:text="@string/booking_nutrition"
                     android:textColor="@color/grey"
-                    android:layout_width="0dp"
+                    android:layout_width="140dp"
                     android:textSize="@dimen/body1"
-                    android:layout_weight="2"
                     android:layout_height="match_parent"/>
 
                 <TextView
-                    android:text="@string/booking_departure"
-                    android:layout_width="0dp"
-                    android:layout_weight="4"
+                    android:id="@+id/booking_nutrition"
+                    android:layout_width="match_parent"
                     android:textSize="@dimen/body1"
-
                     android:layout_height="match_parent"
                     tools:text="Все включено"/>
 
@@ -301,7 +286,190 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <TextView
+                android:text="@string/booking_this_data"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/body2"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/booking_tourist_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/white_rounded_corners"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear3" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/booking_add_tourist_part"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/white_rounded_corners"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/booking_tourist_list">
+            
+            <TextView
+                android:text="@string/booking_tourist_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h2"/>
+            
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/booking_add_tourist_button"
+                    android:background="@drawable/icon_add_rounded_corners"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp">
+
+                    <ImageView
+                        android:src="@drawable/icon_add"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        
+        <LinearLayout
+            android:id="@+id/booking_price_part"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="16dp"
+            android:background="@drawable/white_rounded_corners"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/booking_add_tourist_part">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_tour"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/booking_tour_price"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/body1"
+                    android:textAlignment="textEnd"
+                    android:layout_height="match_parent"
+                    tools:text="186 600 ₽"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_arrival_country"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/booking_fuel_charge"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/body1"
+                    android:textAlignment="textEnd"
+                    android:layout_height="match_parent"
+                    tools:text="9 300 ₽"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_service_charge"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/booking_service_charge"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/body1"
+                    android:textAlignment="textEnd"
+                    android:layout_height="match_parent"
+                    tools:text="2 136 ₽"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_height="19dp">
+
+                <TextView
+                    android:text="@string/booking_to_pay"
+                    android:textColor="@color/grey"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/booking_to_pay"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/blue"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/body1"
+                    android:layout_height="match_parent"
+                    tools:text="198 036 ₽"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/booking_pay"
+            android:background="@drawable/white_rounded_corners"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/booking_price_part">
+
+            <Button
+                android:id="@+id/booking_pay_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/blue_button"
+                android:text="@string/booking_to_pay_btn" />
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

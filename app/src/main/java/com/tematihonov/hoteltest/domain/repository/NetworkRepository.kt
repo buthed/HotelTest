@@ -11,5 +11,5 @@ interface NetworkRepository {
 
     suspend fun getRooms(): Response<Rooms>
 
-    suspend fun getBooking(): Booking
+    suspend fun getBooking(): Response<Booking>
 }
