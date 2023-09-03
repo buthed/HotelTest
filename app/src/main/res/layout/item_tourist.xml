@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/hotel_about_rounded_corners"
     android:layout_marginTop="8dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:paddingHorizontal="16dp"
+        android:paddingVertical="13dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -35,10 +37,11 @@
 
                     <ImageView
                         android:src="@drawable/icon_arrow"
+                        android:rotation="90"
                         android:padding="10dp"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:contentDescription="TODO" />
+                        tools:ignore="ContentDescription" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -46,12 +49,89 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <LinearLayout
+            android:id="@+id/tourist_expand_part"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-<!--            <EditText-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"/>-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="8dp"
+                style="@style/BookingInputLayout">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/booking_tourist_name"
+                    android:text=""
+                    style="@style/BookingEditText"
+                    android:hint="@string/booking_tourist_name"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="8dp"
+                style="@style/BookingInputLayout">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/booking_tourist_name_second"
+                    android:text=""
+                    style="@style/BookingEditText"
+                    android:hint="@string/booking_tourist_name_second"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="8dp"
+                style="@style/BookingInputLayout">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/booking_tourist_date_of_birth"
+                    android:text=""
+                    style="@style/BookingEditText"
+                    android:hint="@string/booking_tourist_date_of_birth"
+                    android:inputType="date"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="8dp"
+                style="@style/BookingInputLayout">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/booking_tourist_citizenship"
+                    android:text=""
+                    style="@style/BookingEditText"
+                    android:hint="@string/booking_tourist_citizenship" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="8dp"
+                style="@style/BookingInputLayout">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/booking_tourist_passport_number"
+                    android:text=""
+                    style="@style/BookingEditText"
+                    android:hint="@string/booking_tourist_passport_number"
+                    android:inputType="numberSigned"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="8dp"
+                style="@style/BookingInputLayout">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/booking_tourist_name_passport_validity_period"
+                    android:text=""
+                    style="@style/BookingEditText"
+                    android:hint="@string/booking_tourist_name_passport_validity_period"
+                    android:inputType="date"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

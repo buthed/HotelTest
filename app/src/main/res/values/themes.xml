@@ -1,8 +1,28 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
     <style name="Base.Theme.HotelTest" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="fontFamily">@font/sf_pro_display</item>
+        <item name="colorPrimary">@color/blue</item>
+    </style>
+
+    <style name="BookingInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeColor">@color/override_transparent_color</item>
+        <item name="boxBackgroundColor">@color/background</item>
+        <item name="hintTextColor">@color/grey</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <style name="BookingEditText" parent="ThemeOverlay.AppCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/body1</item>
     </style>
 
     <style name="Theme.HotelTest" parent="Base.Theme.HotelTest" />

@@ -286,6 +286,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="20dp"
+                style="@style/BookingInputLayout">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/booking_input_phone"
+                    android:text=""
+                    style="@style/BookingEditText"
+                    android:hint="@string/booking_input_phone"
+                    android:inputType="phone"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="8dp"
+                style="@style/BookingInputLayout">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/booking_input_mail"
+                    android:text=""
+                    style="@style/BookingEditText"
+                    android:hint="@string/booking_input_mail"
+                    android:inputType="textEmailAddress"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:text="@string/booking_this_data"
                 android:textColor="@color/grey"
@@ -303,7 +329,9 @@
             android:background="@drawable/white_rounded_corners"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linear3" />
+            app:layout_constraintTop_toBottomOf="@+id/linear3"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_tourist"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/booking_add_tourist_part"
