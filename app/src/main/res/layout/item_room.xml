@@ -66,7 +66,7 @@
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/room_item_rounded_corners"
+        android:background="@drawable/white_rounded_corners_12"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp"
@@ -82,22 +82,20 @@
             android:textSize="@dimen/h2"
             tools:text="Стандартный с видом на бассейн или сад" />
 
-        <!-- //TODO about_the_room peculiarities  -->
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/room_peculiarities"
             android:orientation="horizontal"
-            android:clipToPadding="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
             tools:listitem="@layout/item_peculiarity"
             tools:itemCount="5"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="29dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -152,14 +150,10 @@
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_choose_room"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginVertical="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="28dp"
-            android:backgroundTint="@color/blue_button"
+            style="@style/AppButton"
+            android:layout_marginTop="16dp"
             android:text="@string/rooms_choose_room" />
 
     </LinearLayout>

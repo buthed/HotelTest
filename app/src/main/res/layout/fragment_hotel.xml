@@ -94,56 +94,48 @@
 
         <LinearLayout
             android:id="@+id/linear1"
-            android:background="@color/white"
+            android:background="@drawable/white_rounded_corners_12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
+            android:paddingVertical="16dp"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:gravity="start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/carousel">
 
-            <!-- //TODO add corousel -->
-
             <LinearLayout
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
+                android:background="@drawable/hotel_grade_rounded_corners"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="29dp">
 
-                <LinearLayout
-                    android:background="@drawable/hotel_grade_rounded_corners"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingVertical="5dp"
-                    android:paddingHorizontal="10dp"
+                <ImageView
+                    android:src="@drawable/icon_star"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"/>
+
+                <TextView
+                    android:id="@+id/hotel_rating"
+                    android:layout_marginStart="3dp"
+                    android:textSize="@dimen/body1"
+                    android:textColor="@color/grade_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="29dp">
+                    android:layout_height="wrap_content"
+                    tools:text="5"/>
 
-                    <ImageView
-                        android:src="@drawable/icon_star"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"/>
-
-                    <TextView
-                        android:id="@+id/hotel_rating"
-                        android:layout_marginStart="3dp"
-                        android:textSize="@dimen/body1"
-                        android:textColor="@color/grade_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="5"/>
-
-                    <TextView
-                        android:id="@+id/hotel_rating_name"
-                        android:layout_marginStart="5dp"
-                        android:textSize="@dimen/body1"
-                        android:textColor="@color/grade_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="Превосходно"/>
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/hotel_rating_name"
+                    android:layout_marginStart="5dp"
+                    android:textSize="@dimen/body1"
+                    android:textColor="@color/grade_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Превосходно"/>
 
             </LinearLayout>
 
@@ -188,11 +180,9 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- //TODO add corners radius -->
-
         <LinearLayout
             android:id="@+id/linear2"
-            android:background="@color/white"
+            android:background="@drawable/white_rounded_corners_12"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -211,17 +201,14 @@
                 android:text="@string/hotel_about"
                 tools:ignore="UnusedAttribute" />
 
-            <!-- //TODO about_the_hotel peculiarities  -->
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hotel_about_peculiarities"
                 android:orientation="horizontal"
-                android:clipToPadding="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                 tools:listitem="@layout/item_peculiarity"
-                tools:itemCount="5"/>
+                tools:itemCount="7"/>
 
             <TextView
                 android:id="@+id/hotel_about_the_hotel_description"
@@ -232,7 +219,6 @@
                 tools:text="Отель VIP-класса с собственными гольф полями. Высокий уровнь сервиса. Рекомендуем для респектабельного отдыха. Отель принимает гостей от 18 лет!"/>
 
             <LinearLayout
-                android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 android:background="@drawable/hotel_about_rounded_corners"
                 android:padding="15dp"
@@ -277,7 +263,8 @@
                         <ImageView
                             android:src="@drawable/icon_arrow"
                             android:layout_width="24dp"
-                            android:layout_height="24dp" />
+                            android:layout_height="24dp"
+                            app:tint="@color/grey" />
                     </LinearLayout>
                 </LinearLayout>
                 <View
@@ -324,7 +311,8 @@
                         <ImageView
                             android:src="@drawable/icon_arrow"
                             android:layout_width="24dp"
-                            android:layout_height="24dp"/>
+                            android:layout_height="24dp"
+                            app:tint="@color/grey" />
                     </LinearLayout>
                 </LinearLayout>
                 <View
@@ -371,7 +359,8 @@
                         <ImageView
                             android:src="@drawable/icon_arrow"
                             android:layout_width="24dp"
-                            android:layout_height="24dp"/>
+                            android:layout_height="24dp"
+                            app:tint="@color/grey" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -387,15 +376,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_hotel_to_choose"
+                style="@style/AppButton"
                 android:text="@string/hotel_to_choose"
-                android:backgroundTint="@color/blue_button"
-                android:layout_width="match_parent"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="28dp"
-                android:layout_height="48dp">
-            </Button>
+                android:layout_marginVertical="12dp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

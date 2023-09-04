@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.tematihonov.hoteltest.R
 import com.tematihonov.hoteltest.databinding.FragmentBookingBinding
+import com.tematihonov.hoteltest.presentation.ui.util.priceConverter
 import com.tematihonov.hoteltest.presentation.viewmodel.BookingViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,22 +51,22 @@ class BookingFragment : Fragment() {
                     bookingDeparture.text = booking.departure
                     bookingArrivalCountry.text = booking.arrival_country
                     bookingDates.text = getString(R.string.booking_dates_set_text, booking.tour_date_start, booking.tour_date_stop)
-                    bookingNumberOfNights.text = booking.number_of_nights.toString() +
-                            when (booking.number_of_nights) {
-                        1 -> " ночь"
-                        2-4 -> " ночи"
-                        else -> " ночей"
-                    }
+                    bookingNumberOfNights.text = getString(R.string.booking_number_of_nights_set_text,
+                        booking.number_of_nights,
+                        when (booking.number_of_nights) {
+                            1 -> " ночь"
+                            2-4 -> " ночи"
+                            else -> " ночей"})
+
                     bookingRoom.text = booking.room
                     bookingNutrition.text = booking.nutrition
-                    bookingTourPrice.text = getString(R.string.booking_price_set_text, booking.tour_price.toString())
-                    bookingFuelCharge.text = getString(R.string.booking_price_set_text, booking.fuel_charge.toString())
-                    bookingServiceCharge.text = getString(R.string.booking_price_set_text, booking.service_charge.toString())
-
+                    bookingTourPrice.text = priceConverter(booking.tour_price)
+                    bookingFuelCharge.text = priceConverter(booking.fuel_charge)
+                    bookingServiceCharge.text = priceConverter(booking.service_charge)
 
                     val totalToPay = listOf(booking.tour_price,booking.fuel_charge,booking.service_charge)
-                    bookingToPay.text  = getString(R.string.booking_price_set_text,  totalToPay.sum().toString()) //TODO change format
-                    bookingPayButton.text = getString(R.string.booking_to_pay_btn, totalToPay.sum().toString())
+                    bookingToPay.text = priceConverter(totalToPay.sum())
+                    bookingPayButton.text = priceConverter(totalToPay.sum())
                 }
             }
         }

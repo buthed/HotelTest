@@ -4,6 +4,7 @@
 
     <!-- Hotel-->
     <string name="hotel_title">Отель</string>
+    <string name="hotel_minimal_price">от %1$s</string>
     <string name="hotel_about">Об отеле</string>
     <string name="hotel_facilities">Удобства</string>
     <string name="hotel_what_included">Что включено</string>
@@ -14,6 +15,7 @@
     <!-- Rooms-->
     <string name="rooms_choose_room">Выбрать номер</string>
     <string name="rooms_details">Подробнее о номере</string>
+    <string name="rooms_to_pay">%1$s ₽</string>
 
     <!-- Booking-->
     <string name="booking_title">Бронирование</string>
@@ -22,6 +24,7 @@
     <string name="booking_dates">Даты</string>
     <string name="booking_dates_set_text">%1$s - %2$s</string>
     <string name="booking_number_of_nights">Кол-во ночей</string>
+    <string name="booking_number_of_nights_set_text">%1$d %2$s</string>
     <string name="booking_hotel">Отель</string>
     <string name="booking_room">Номер</string>
     <string name="booking_nutrition">Питание</string>
@@ -32,7 +35,6 @@
     <string name="booking_service_charge">Сервисный сбор</string>
     <string name="booking_to_pay">К оплате</string>
     <string name="booking_to_pay_btn">Оплатить %1$s ₽</string>
-    <string name="booking_price_set_text">%1$s ₽</string>
     <string name="booking_input_phone">Номер телефона</string>
     <string name="booking_input_mail">Почта</string>
     <string name="booking_tourist_one">Первый турист</string>

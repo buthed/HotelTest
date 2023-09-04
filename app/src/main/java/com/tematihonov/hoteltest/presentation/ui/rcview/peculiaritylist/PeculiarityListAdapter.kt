@@ -1,5 +1,6 @@
 package com.tematihonov.hoteltest.presentation.ui.rcview.peculiaritylist
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,7 @@ class PeculiarityListAdapter(): RecyclerView.Adapter<PeculiarityListAdapter.Pecu
         val peculiarity = peculiarities[position]
         with(holder.binding) {
             peculiarityText.text = peculiarity
+            Log.d("GGG", "t ${peculiarity}")
         }
     }
 

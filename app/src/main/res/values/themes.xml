@@ -25,5 +25,15 @@
         <item name="android:textSize">@dimen/body1</item>
     </style>
 
+    <style name="AppButton" parent="ShapeAppearanceOverlay.Material3.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/body1</item>
+        <item name="android:backgroundTint">@color/blue</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
     <style name="Theme.HotelTest" parent="Base.Theme.HotelTest" />
 </resources>

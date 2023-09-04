@@ -2,18 +2,22 @@ package com.tematihonov.hoteltest.presentation.ui.fragment
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import com.tematihonov.hoteltest.R
+import com.tematihonov.hoteltest.data.models.responseHotel.Hotel
 import com.tematihonov.hoteltest.databinding.FragmentHotelBinding
 import com.tematihonov.hoteltest.presentation.ui.rcview.hotelimageslist.HotelImagesAdapter
 import com.tematihonov.hoteltest.presentation.ui.rcview.peculiaritylist.PeculiarityListAdapter
+import com.tematihonov.hoteltest.presentation.ui.util.priceConverter
 import com.tematihonov.hoteltest.presentation.viewmodel.HotelViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,10 +29,6 @@ class HotelFragment : Fragment() {
     private val hotelViewModel by viewModel<HotelViewModel>()
     private lateinit var adapter: PeculiarityListAdapter
     private lateinit var viewPager2: ViewPager2
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,12 +43,6 @@ class HotelFragment : Fragment() {
 
         checkDataAndSetNewValues()
 
-
-        binding.buttonHotelToChoose.setOnClickListener {
-            val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment(hotelViewModel.hotelModel.value?.name
-                ?: "") //TODO add to fun?
-            Navigation.findNavController(view).navigate(action)
-        }
     }
 
     private fun checkDataAndSetNewValues() = with(binding) {
@@ -56,26 +50,31 @@ class HotelFragment : Fragment() {
             if (it == false) {
                 hotelViewModel.hotelModel.observe(viewLifecycleOwner) { hotel ->
                     hotelCarousel(hotel.image_urls)
-                    hotelPeculiarities()
+                    hotelPeculiarities(hotel.about_the_hotel.peculiarities)
                     hotelName.text = hotel.name
                     hotelAddress.text = hotel.adress
-                    hotelMinimalPrice.text = "от ${hotel.minimal_price} ₽"
+                    hotelMinimalPrice.text = getString(R.string.hotel_minimal_price,  priceConverter(hotel.minimal_price))
                     hotelPriceForIt.text = hotel.price_for_it
                     hotelRating.text = hotel.rating.toString()
                     hotelRatingName.text = hotel.rating_name
                     hotelAboutTheHotelDescription.text = hotel.about_the_hotel.description
-                    //TODO add peculiarities
-                    adapter.peculiarities = hotel.about_the_hotel.peculiarities
+                    navigation(hotel)
                 }
             }
         }
     }
 
-    private fun hotelPeculiarities() {
+    private fun hotelPeculiarities(peculiarities: List<String>) {
         adapter = PeculiarityListAdapter()
-        val layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL)
-        binding.hotelAboutPeculiarities.layoutManager = layoutManager
+        adapter.peculiarities = peculiarities
+
+        val flexLayoutManager = FlexboxLayoutManager(this.context)
+        flexLayoutManager.apply {
+            flexDirection = FlexDirection.ROW
+            justifyContent =  JustifyContent.FLEX_START
+        }
         binding.hotelAboutPeculiarities.adapter = adapter
+        binding.hotelAboutPeculiarities.layoutManager = flexLayoutManager
     }
 
     private fun hotelCarousel(imageUrls: List<String>) {
@@ -104,20 +103,30 @@ class HotelFragment : Fragment() {
     fun changeColor() {
         when (viewPager2.currentItem) {
             0 -> {
-                binding.hotelCarouselCv1.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.black))
-                binding.hotelCarouselCv2.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.carousel_grey))
-                binding.hotelCarouselCv3.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.carousel_grey))
+                binding.hotelCarouselCv1.backgroundTintList = colorStateList(R.color.black)
+                binding.hotelCarouselCv2.backgroundTintList = colorStateList(R.color.carousel_grey)
+                binding.hotelCarouselCv3.backgroundTintList = colorStateList(R.color.carousel_grey)
             }
             1 -> {
-                binding.hotelCarouselCv1.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.carousel_grey))
-                binding.hotelCarouselCv2.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.black))
-                binding.hotelCarouselCv3.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.carousel_grey))
+                binding.hotelCarouselCv1.backgroundTintList = colorStateList(R.color.carousel_grey)
+                binding.hotelCarouselCv2.backgroundTintList = colorStateList(R.color.black)
+                binding.hotelCarouselCv3.backgroundTintList = colorStateList(R.color.carousel_grey)
             }
             2 -> {
-                binding.hotelCarouselCv1.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.carousel_grey))
-                binding.hotelCarouselCv2.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.carousel_grey))
-                binding.hotelCarouselCv3.backgroundTintList = ColorStateList.valueOf(this.resources.getColor(R.color.black))
-            } //TODO del deprecaited
+                binding.hotelCarouselCv1.backgroundTintList = colorStateList(R.color.carousel_grey)
+                binding.hotelCarouselCv2.backgroundTintList = colorStateList(R.color.carousel_grey)
+                binding.hotelCarouselCv3.backgroundTintList = colorStateList(R.color.black)
+            }
+        }
+    }
+
+    private fun colorStateList(color: Int) =
+        ColorStateList.valueOf(ContextCompat.getColor(requireContext(), color))
+
+    private fun FragmentHotelBinding.navigation(hotel: Hotel) {
+        buttonHotelToChoose.setOnClickListener {
+            val action = HotelFragmentDirections.actionHotelFragmentToRoomsFragment(hotel.name)
+            Navigation.findNavController(this.buttonHotelToChoose).navigate(action)
         }
     }
 
