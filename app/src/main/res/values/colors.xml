@@ -13,6 +13,8 @@
     <color name="grade">#fff5d0</color>
     <color name="room_details">#e4f0fe</color>
     <color name="background">#f6f6f9</color>
+    <color name="edit_text_bg">#f7f7f7</color>
+    <color name="error">#26EB5757</color>
 
     <color name="override_transparent_color" tools:override="true">@android:color/transparent</color>
 </resources>

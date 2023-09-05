@@ -47,6 +47,7 @@
     <string name="booking_tourist_citizenship">Гражданство</string>
     <string name="booking_tourist_passport_number">Номер загранпаспорта</string>
     <string name="booking_tourist_name_passport_validity_period">Срок действия загранпаспорта</string>
+    <string name="booking_error_toast">Некоторые данные заполнены некорректно\nили не заполнены вовсе</string>
 
 
 

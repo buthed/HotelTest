@@ -21,6 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+<!--            //TODO recheck icon-->
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
@@ -289,7 +290,9 @@
                     android:text=""
                     style="@style/BookingEditText"
                     android:hint="@string/booking_input_phone"
-                    android:inputType="phone"/>
+                    android:autofillHints="true"
+                    android:inputType="phone">
+                </androidx.appcompat.widget.AppCompatEditText>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -301,6 +304,8 @@
                     android:id="@+id/booking_input_mail"
                     android:text=""
                     style="@style/BookingEditText"
+                    android:focusableInTouchMode="true"
+                    android:focusedByDefault="false"
                     android:hint="@string/booking_input_mail"
                     android:inputType="textEmailAddress"/>
 
