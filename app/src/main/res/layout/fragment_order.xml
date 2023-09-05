@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
+        <Toolbar
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="49dp"
@@ -27,7 +27,7 @@
                 android:layout_gravity="center"
                 android:text="@string/order_title"
                 android:textSize="@dimen/h3" />
-        </androidx.appcompat.widget.Toolbar>
+        </Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
