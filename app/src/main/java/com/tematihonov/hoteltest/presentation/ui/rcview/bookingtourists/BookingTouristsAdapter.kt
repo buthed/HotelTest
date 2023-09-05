@@ -2,12 +2,16 @@ package com.tematihonov.hoteltest.presentation.ui.rcview.bookingtourists
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.res.ColorStateList
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.tematihonov.hoteltest.R
 import com.tematihonov.hoteltest.data.models.Tourist
 import com.tematihonov.hoteltest.databinding.ItemTouristBinding
 import com.tematihonov.hoteltest.presentation.viewmodel.BookingViewModel
@@ -59,6 +63,17 @@ class BookingTouristsAdapter(
             bookingAddTouristButton.setOnClickListener {
                 rListener.onClick(position)
             }
+            bookingTouristName.setText(tourist.firstName)
+            bookingTouristNameSecond.setText(tourist.secondName)
+            bookingTouristDateOfBirth.setText(tourist.dateOfBirth)
+            bookingTouristCitizenship.setText(tourist.citizen)
+            bookingTouristPassportNumber.setText(tourist.passportNumber)
+            bookingTouristPassportValidityPeriod.setText(tourist.passportValidation)
+
+            Log.d("GGG", "touristsListInput: ${bookingViewModel.touristsListInput}")
+            if (bookingViewModel.touristsListInput.isNotEmpty() && !bookingViewModel.touristsListInput[position].new) {
+                checkEmptyStrings(bookingViewModel.touristsListInput[position])
+            }
 
             when(tourist.expand) {
                 true -> {
@@ -76,27 +91,36 @@ class BookingTouristsAdapter(
             bookingTouristName.onFocusChangeListener =
                 OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,1, bookingTouristName.text.toString()) } }
             bookingTouristNameSecond.onFocusChangeListener =
-                OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,2, bookingTouristName.text.toString()) } }
+                OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,2, bookingTouristNameSecond.text.toString()) } }
             bookingTouristCitizenship.onFocusChangeListener =
-                OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,4, bookingTouristName.text.toString()) } }
+                OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,4, bookingTouristCitizenship.text.toString()) } }
             bookingTouristPassportNumber.onFocusChangeListener =
-                OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,5, bookingTouristName.text.toString()) } }
+                OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,5, bookingTouristPassportNumber.text.toString()) } }
             datePicker(position)
 
         }
     }
 
-//    fun ItemTouristBinding.checkEmptyStrings() {
-//        if (bookingTouristName.text!!.isNotEmpty()) {
-//            Log.d("GGG", "Phone GOOD")
-//            bookingTouristName.backgroundTintList = colorStateList(R.color.edit_text_bg)
-//            //return true
-//        } else {
-//            bookingTouristName.backgroundTintList = colorStateList(R.color.error)
-//            Log.d("GGG", "Phone BAD")
-//            //return false
-//        }
-//    }
+    fun ItemTouristBinding.checkEmptyStrings(tourist: Tourist) {
+
+        if (tourist.firstName.isNotEmpty()) { bookingTouristName.backgroundTintList = colorStateList(R.color.edit_text_bg) }
+        else { bookingTouristName.backgroundTintList = colorStateList(R.color.error) }
+
+        if (tourist.secondName.isNotEmpty()) { bookingTouristNameSecond.backgroundTintList = colorStateList(R.color.edit_text_bg) }
+        else { bookingTouristNameSecond.backgroundTintList = colorStateList(R.color.error) }
+
+        if (tourist.dateOfBirth.isNotEmpty()) { bookingTouristDateOfBirth.backgroundTintList = colorStateList(R.color.edit_text_bg) }
+        else { bookingTouristDateOfBirth.backgroundTintList = colorStateList(R.color.error) }
+
+        if (tourist.citizen.isNotEmpty()) { bookingTouristCitizenship.backgroundTintList = colorStateList(R.color.edit_text_bg) }
+        else { bookingTouristCitizenship.backgroundTintList = colorStateList(R.color.error) }
+
+        if (tourist.passportNumber.isNotEmpty()) { bookingTouristPassportNumber.backgroundTintList = colorStateList(R.color.edit_text_bg) }
+        else { bookingTouristPassportNumber.backgroundTintList = colorStateList(R.color.error) }
+
+        if (tourist.passportValidation.isNotEmpty()) { bookingTouristPassportValidityPeriod.backgroundTintList = colorStateList(R.color.edit_text_bg) }
+        else { bookingTouristPassportValidityPeriod.backgroundTintList = colorStateList(R.color.error) }
+    }
 
     private fun ItemTouristBinding.datePicker(position: Int) {
         val cal = Calendar.getInstance()
@@ -120,7 +144,7 @@ class BookingTouristsAdapter(
                 val myFormat = "MM/dd/yyyy" // mention the format you need
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 sdf.format(cal.time).also {
-                    bookingTouristNamePassportValidityPeriod.text = Editable.Factory.getInstance().newEditable(it)
+                    bookingTouristPassportValidityPeriod.text = Editable.Factory.getInstance().newEditable(it)
                 }
             }
 
@@ -134,9 +158,9 @@ class BookingTouristsAdapter(
             ).show()
         }
         bookingTouristDateOfBirth.onFocusChangeListener =
-            OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,3, bookingTouristName.text.toString()) } }
+            OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,3, bookingTouristDateOfBirth.text.toString()) } }
 
-        bookingTouristNamePassportValidityPeriod.setOnClickListener {
+        bookingTouristPassportValidityPeriod.setOnClickListener {
             DatePickerDialog(
                 context,
                 dateSetListenerPassportValidity,
@@ -145,11 +169,11 @@ class BookingTouristsAdapter(
                 cal.get(Calendar.DAY_OF_MONTH)
             ).show()
         }
-        bookingTouristNamePassportValidityPeriod.onFocusChangeListener =
-            OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,6, bookingTouristName.text.toString()) } }
+        bookingTouristPassportValidityPeriod.onFocusChangeListener =
+            OnFocusChangeListener { v, hasFocus -> if (!hasFocus) { bookingViewModel.updateTourist(position,6, bookingTouristPassportValidityPeriod.text.toString()) } }
     }
 
-//    private fun colorStateList(color: Int) =
-//        ColorStateList.valueOf(ContextCompat.getColor(context, color))
+    private fun colorStateList(color: Int) =
+        ColorStateList.valueOf(ContextCompat.getColor(context, color)) //TODO optimize?
 }
 

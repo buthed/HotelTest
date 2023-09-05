@@ -1,12 +1,12 @@
 package com.tematihonov.hoteltest.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tematihonov.hoteltest.data.models.Tourist
 import com.tematihonov.hoteltest.data.models.responceBooking.Booking
 import com.tematihonov.hoteltest.domain.usecase.NetworkUseCases
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class BookingViewModel(
@@ -15,9 +15,9 @@ class BookingViewModel(
 
     val bookingModel = MutableLiveData<Booking>()
     val isLoading = MutableLiveData<Boolean>()
-    val isTourisCheck = MutableLiveData<Boolean>()
 
     val touristsList = MutableLiveData(arrayListOf(Tourist("Первый турист", true)))
+    var touristsListInput: ArrayList<Tourist> = arrayListOf()
 
     init {
         loadHotel()
@@ -42,6 +42,8 @@ class BookingViewModel(
 
     fun updateTourist(position: Int, parameter: Int, newValue: String) {
         viewModelScope.launch {
+            //touristsList.value!![position].new = false
+
             val tourists = touristsList.value
             val tourist = tourists!![position]
 
@@ -55,15 +57,19 @@ class BookingViewModel(
             }
             tourists[position] = tourist
             touristsList.postValue(tourists)
+            if (touristsListInput.size != 0 && touristsListInput.size>=position-1) {
+                if (!touristsListInput[position].new) {
+                    touristsListInput = touristsList.value!!
+                }
+            }
         }
     }
 
     fun checkTouristsData(): Boolean {
-        viewModelScope.launch {
-            isTourisCheck.value = true
-            delay(100)
-            isTourisCheck.postValue(false)
+        touristsList.value!!.forEach {
+            it.new = false
         }
+        touristsListInput = touristsList.value!!
         touristsList.value!!.forEach {
             if (
                 it.firstName.isEmpty() ||
@@ -74,6 +80,8 @@ class BookingViewModel(
                 it.passportValidation.isEmpty()
             ) return false
         }
+        Log.d("GGG", "GOOD CAUSE: ${touristsListInput[0]}")
+        Log.d("GGG", "GOOD CAUSE: ${touristsListInput[1]}")
         return true
     }
 

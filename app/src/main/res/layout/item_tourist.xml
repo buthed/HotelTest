@@ -62,7 +62,7 @@
                 android:layout_marginTop="8dp"
                 style="@style/BookingInputLayout">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/booking_tourist_name"
                     android:text=""
                     style="@style/BookingEditText"
@@ -75,7 +75,7 @@
                 android:layout_marginTop="8dp"
                 style="@style/BookingInputLayout">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/booking_tourist_name_second"
                     android:text=""
                     style="@style/BookingEditText"
@@ -128,7 +128,7 @@
                 style="@style/BookingInputLayout">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/booking_tourist_name_passport_validity_period"
+                    android:id="@+id/booking_tourist_passport_validity_period"
                     android:text=""
                     style="@style/BookingEditText"
                     android:hint="@string/booking_tourist_name_passport_validity_period"

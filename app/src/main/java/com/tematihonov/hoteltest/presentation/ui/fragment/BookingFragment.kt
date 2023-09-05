@@ -59,6 +59,7 @@ class BookingFragment : Fragment() {
         }
         binding.bookingAddTouristButton.setOnClickListener {
             bookingViewModel.addNewTourist()
+            adapter.tourists = bookingViewModel.touristsList.value!!
         }
     }
 
@@ -112,41 +113,42 @@ class BookingFragment : Fragment() {
         }
         bookingPayButton.setOnClickListener {
 
-            if (checkInputs() && bookingViewModel.checkTouristsData()) {
+            if (checkInputs()) {
                 findNavController().navigate(R.id.action_bookingFragment2_to_orderFragment)
             } else {
                 Toast.makeText(requireContext(), getString(R.string.booking_error_toast), Toast.LENGTH_SHORT).show()
-                Log.d("GGG", "tourist: ${bookingViewModel.touristsList.value?.get(0)}")
+                Log.d("GGG", "tourists: ${bookingViewModel.touristsList.value}")
             }
         }
     }
 
     private fun checkInputs(): Boolean {
+        if (!bookingViewModel.checkTouristsData()) {
+            adapter.tourists = bookingViewModel.touristsList.value!!
+        }
         checkMailInput()
         checkPhoneInput()
-        return checkMailInput() && checkPhoneInput()
+        return checkMailInput() && checkPhoneInput() && bookingViewModel.checkTouristsData()
     }
 
     private fun checkPhoneInput(): Boolean = with(binding) {
         if(bookingInputPhone.text!!.length == 18) {
-            Log.d("GGG", "Phone GOOD")
             bookingInputPhone.backgroundTintList = colorStateList(R.color.edit_text_bg)
+            Log.d("GGG", "GOOD CAUSE: checkPhoneInput")
             return true
         } else {
             bookingInputPhone.backgroundTintList = colorStateList(R.color.error)
-            Log.d("GGG", "Phone BAD")
             return false
         }
     }
 
     private fun checkMailInput(): Boolean = with(binding)  {
         if(!bookingInputMail.text.isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(bookingInputMail.text.toString()).matches()) {
-            Log.d("GGG", "EMAIL GOOD")
             bookingInputMail.backgroundTintList = colorStateList(R.color.edit_text_bg)
+            Log.d("GGG", "GOOD CAUSE: bookingInputMail")
             return true
         } else {
             bookingInputMail.backgroundTintList = colorStateList(R.color.error)
-            Log.d("GGG", "EMAIL BAD") //TODO del logs
             return false
         }
     }
