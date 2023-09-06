@@ -3,7 +3,7 @@ package com.tematihonov.hoteltest.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tematihonov.hoteltest.data.models.responceRooms.Rooms
+import com.tematihonov.hoteltest.domain.models.responceRooms.Rooms
 import com.tematihonov.hoteltest.domain.usecase.NetworkUseCases
 import kotlinx.coroutines.launch
 

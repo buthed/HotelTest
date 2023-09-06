@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tematihonov.hoteltest.data.models.Tourist
-import com.tematihonov.hoteltest.data.models.responceBooking.Booking
+import com.tematihonov.hoteltest.domain.models.Tourist
+import com.tematihonov.hoteltest.domain.models.responceBooking.Booking
 import com.tematihonov.hoteltest.domain.usecase.NetworkUseCases
 import kotlinx.coroutines.launch
 

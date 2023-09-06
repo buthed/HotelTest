@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.tematihonov.hoteltest.R
-import com.tematihonov.hoteltest.data.models.Tourist
+import com.tematihonov.hoteltest.domain.models.Tourist
 import com.tematihonov.hoteltest.databinding.ItemTouristBinding
 import com.tematihonov.hoteltest.presentation.viewmodel.BookingViewModel
 import java.text.SimpleDateFormat

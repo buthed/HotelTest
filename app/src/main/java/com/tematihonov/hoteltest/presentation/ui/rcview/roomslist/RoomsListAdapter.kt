@@ -11,7 +11,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.tematihonov.hoteltest.R
-import com.tematihonov.hoteltest.data.models.responceRooms.Room
+import com.tematihonov.hoteltest.domain.models.responceRooms.Room
 import com.tematihonov.hoteltest.databinding.ItemRoomBinding
 import com.tematihonov.hoteltest.presentation.ui.rcview.hotelimageslist.HotelImagesAdapter
 import com.tematihonov.hoteltest.presentation.ui.rcview.peculiaritylist.PeculiarityListAdapter
