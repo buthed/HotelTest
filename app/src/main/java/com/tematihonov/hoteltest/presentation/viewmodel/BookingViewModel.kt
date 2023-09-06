@@ -1,6 +1,5 @@
 package com.tematihonov.hoteltest.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,23 +26,16 @@ class BookingViewModel(
         val tourists = touristsList.value
         if (tourists != null) {
             when (tourists.size) {
-                1 -> {
-                    tourists.add(Tourist("Второй турист", false))
-                    touristsList.postValue(tourists)
-                }
-                2 -> {
-                    tourists.add(Tourist("Третий турист", false))
-                    touristsList.postValue(tourists)
-                }
+                1 -> { tourists.add(Tourist("Второй турист", true)) }
+                2 -> { tourists.add(Tourist("Третий турист", true)) }
                 else -> {}
             }
+            touristsList.postValue(tourists)
         }
     }
 
     fun updateTourist(position: Int, parameter: Int, newValue: String) {
         viewModelScope.launch {
-            //touristsList.value!![position].new = false
-
             val tourists = touristsList.value
             val tourist = tourists!![position]
 
@@ -80,8 +72,6 @@ class BookingViewModel(
                 it.passportValidation.isEmpty()
             ) return false
         }
-        Log.d("GGG", "GOOD CAUSE: ${touristsListInput[0]}")
-        Log.d("GGG", "GOOD CAUSE: ${touristsListInput[1]}")
         return true
     }
 

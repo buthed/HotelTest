@@ -24,26 +24,30 @@ class RoomsFragment : Fragment() {
 
     private val args: RoomsFragmentArgs by navArgs()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentRoomsBinding.inflate(inflater, container,false)
+        _binding = FragmentRoomsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        appBar()
         roomsListRecycler()
-
         checkDataAndSetNewValues()
+    }
 
-        binding.toolbarTitle.text = args.hotelname
-        binding.appBar.setOnClickListener {
-            findNavController().popBackStack()
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun appBar() = with(binding) {
+        toolbarTitle.text = args.hotelname
+        appBar.setOnClickListener { findNavController().popBackStack() }
     }
 
     private fun roomsListRecycler() {
@@ -54,8 +58,10 @@ class RoomsFragment : Fragment() {
             }
         })
         val layoutManager = LinearLayoutManager(this.context)
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = adapter
+        binding.apply {
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = adapter
+        }
     }
 
     private fun checkDataAndSetNewValues() {
@@ -66,10 +72,5 @@ class RoomsFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

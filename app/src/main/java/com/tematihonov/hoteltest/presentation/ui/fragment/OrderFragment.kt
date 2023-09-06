@@ -25,10 +25,14 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.appBar.setOnClickListener {
+        navigation()
+    }
+
+    private fun navigation() = with(binding) {
+        appBar.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.buttonSuper.setOnClickListener {
+        buttonSuper.setOnClickListener {
             findNavController().popBackStack(R.id.hotelFragment, false)
         }
     }

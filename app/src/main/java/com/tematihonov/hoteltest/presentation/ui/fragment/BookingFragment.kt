@@ -1,14 +1,12 @@
 package com.tematihonov.hoteltest.presentation.ui.fragment
 
-import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +14,7 @@ import com.tematihonov.hoteltest.R
 import com.tematihonov.hoteltest.databinding.FragmentBookingBinding
 import com.tematihonov.hoteltest.presentation.ui.rcview.bookingtourists.BookingTouristsAdapter
 import com.tematihonov.hoteltest.presentation.ui.util.NumberTextWatcher
+import com.tematihonov.hoteltest.presentation.ui.util.colorStateList
 import com.tematihonov.hoteltest.presentation.ui.util.priceConverter
 import com.tematihonov.hoteltest.presentation.viewmodel.BookingViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,7 +32,7 @@ class BookingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentBookingBinding.inflate(inflater, container,false)
+        _binding = FragmentBookingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,30 +41,38 @@ class BookingFragment : Fragment() {
 
         checkDataAndSetNewValues()
         navigation()
+        touristsRecycler()
+        addTourist()
+    }
 
-        adapter = BookingTouristsAdapter(bookingViewModel)
-        adapter.setOnItemClickListener(object : BookingTouristsAdapter.onItemClickListener {
-            override fun onClick(position: Int) {
-                bookingViewModel.hideExpandTouristInputs(position)
-                Log.d("GGG", "list ${bookingViewModel.touristsList.value}")
-            }
-        })
-        val layoutManager = LinearLayoutManager(this.context)
-        binding.bookingTouristList.layoutManager = layoutManager
-        binding.bookingTouristList.adapter = adapter
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
-        bookingViewModel.touristsList.observe(viewLifecycleOwner) {
-            adapter.tourists = it
-        }
+    private fun addTourist() {
         binding.bookingAddTouristButton.setOnClickListener {
             bookingViewModel.addNewTourist()
             adapter.tourists = bookingViewModel.touristsList.value!!
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun touristsRecycler() {
+        adapter = BookingTouristsAdapter(bookingViewModel)
+        adapter.setOnItemClickListener(object : BookingTouristsAdapter.onItemClickListener {
+            override fun onClick(position: Int) {
+                bookingViewModel.hideExpandTouristInputs(position)
+            }
+        })
+
+        val layoutManager = LinearLayoutManager(this.context)
+        binding.apply {
+            bookingTouristList.layoutManager = layoutManager
+            bookingTouristList.adapter = adapter
+        }
+        bookingViewModel.touristsList.observe(viewLifecycleOwner) {
+            adapter.tourists = it
+        }
     }
 
     private fun checkDataAndSetNewValues() = with(binding) {
@@ -76,24 +83,31 @@ class BookingFragment : Fragment() {
                     hotelAddress.text = booking.hotel_adress
                     hotelRating.text = booking.horating.toString()
                     hotelRatingName.text = booking.rating_name
+
                     bookingHotel.text = booking.hotel_name
                     bookingDeparture.text = booking.departure
                     bookingArrivalCountry.text = booking.arrival_country
-                    bookingDates.text = getString(R.string.booking_dates_set_text, booking.tour_date_start, booking.tour_date_stop)
-                    bookingNumberOfNights.text = getString(R.string.booking_number_of_nights_set_text,
+                    bookingDates.text = getString(
+                        R.string.booking_dates_set_text,
+                        booking.tour_date_start,
+                        booking.tour_date_stop
+                    )
+                    bookingNumberOfNights.text = getString(
+                        R.string.booking_number_of_nights_set_text,
                         booking.number_of_nights,
                         when (booking.number_of_nights) {
                             1 -> " ночь"
-                            2-4 -> " ночи"
-                            else -> " ночей"})
-
+                            2 - 4 -> " ночи"
+                            else -> " ночей"
+                        }
+                    )
                     bookingRoom.text = booking.room
                     bookingNutrition.text = booking.nutrition
                     bookingTourPrice.text = priceConverter(booking.tour_price)
                     bookingFuelCharge.text = priceConverter(booking.fuel_charge)
                     bookingServiceCharge.text = priceConverter(booking.service_charge)
-
-                    val totalToPay = listOf(booking.tour_price,booking.fuel_charge,booking.service_charge)
+                    val totalToPay =
+                        listOf(booking.tour_price, booking.fuel_charge, booking.service_charge)
                     bookingToPay.text = priceConverter(totalToPay.sum())
                     bookingPayButton.text = priceConverter(totalToPay.sum())
 
@@ -111,14 +125,14 @@ class BookingFragment : Fragment() {
         appBar.setOnClickListener {
             findNavController().popBackStack()
         }
+        val incorrectDataToast = Toast.makeText(
+            requireContext(),
+            getString(R.string.booking_error_toast),
+            Toast.LENGTH_SHORT
+        )
         bookingPayButton.setOnClickListener {
-
-            if (checkInputs()) {
-                findNavController().navigate(R.id.action_bookingFragment2_to_orderFragment)
-            } else {
-                Toast.makeText(requireContext(), getString(R.string.booking_error_toast), Toast.LENGTH_SHORT).show()
-                Log.d("GGG", "tourists: ${bookingViewModel.touristsList.value}")
-            }
+            if (checkInputs()) { findNavController().navigate(R.id.action_bookingFragment2_to_orderFragment)
+            } else { incorrectDataToast.show() }
         }
     }
 
@@ -132,27 +146,40 @@ class BookingFragment : Fragment() {
     }
 
     private fun checkPhoneInput(): Boolean = with(binding) {
-        if(bookingInputPhone.text!!.length == 18) {
-            bookingInputPhone.backgroundTintList = colorStateList(R.color.edit_text_bg)
-            Log.d("GGG", "GOOD CAUSE: checkPhoneInput")
+        bookingInputPhone.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && bookingInputPhone.backgroundTintList == colorStateList(R.color.error, requireContext())) {
+                if (bookingInputPhone.text!!.length == 18)
+                    bookingInputPhone.backgroundTintList = colorStateList(R.color.edit_text_bg, requireContext())
+            }
+        }
+        if (bookingInputPhone.text!!.length == 18) {
+            bookingInputPhone.backgroundTintList = colorStateList(R.color.edit_text_bg, requireContext())
             return true
         } else {
-            bookingInputPhone.backgroundTintList = colorStateList(R.color.error)
+            bookingInputPhone.backgroundTintList = colorStateList(R.color.error, requireContext())
             return false
         }
     }
 
-    private fun checkMailInput(): Boolean = with(binding)  {
-        if(!bookingInputMail.text.isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(bookingInputMail.text.toString()).matches()) {
-            bookingInputMail.backgroundTintList = colorStateList(R.color.edit_text_bg)
-            Log.d("GGG", "GOOD CAUSE: bookingInputMail")
+    private fun checkMailInput(): Boolean = with(binding) {
+        bookingInputMail.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && bookingInputMail.backgroundTintList == colorStateList(R.color.error, requireContext())) {
+                if (!bookingInputMail.text.isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(
+                        bookingInputMail.text.toString()
+                    ).matches()
+                ) bookingInputMail.backgroundTintList = colorStateList(R.color.edit_text_bg, requireContext())
+            }
+        }
+
+        if (!bookingInputMail.text.isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(
+                bookingInputMail.text.toString()
+            ).matches()
+        ) {
+            bookingInputMail.backgroundTintList = colorStateList(R.color.edit_text_bg, requireContext())
             return true
         } else {
-            bookingInputMail.backgroundTintList = colorStateList(R.color.error)
+            bookingInputMail.backgroundTintList = colorStateList(R.color.error, requireContext())
             return false
         }
     }
-
-    private fun colorStateList(color: Int) =
-        ColorStateList.valueOf(ContextCompat.getColor(requireContext(), color))
 }

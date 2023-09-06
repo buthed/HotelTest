@@ -21,7 +21,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-<!--            //TODO recheck icon-->
             <Toolbar
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"

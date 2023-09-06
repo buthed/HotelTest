@@ -8,15 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.tematihonov.hoteltest.R
 
-class HotelImagesAdapter(private val images: List<String>): RecyclerView.Adapter<HotelImagesAdapter.ViewPagerViewHolder>() {
+class HotelImagesAdapter(private val images: List<String>) :
+    RecyclerView.Adapter<HotelImagesAdapter.ViewPagerViewHolder>() {
 
-    inner class ViewPagerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class ViewPagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val imageView: ImageView = itemView.findViewById(R.id.carousel_image)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelImagesAdapter.ViewPagerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.carousel_item, parent, false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): HotelImagesAdapter.ViewPagerViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.carousel_item, parent, false)
         return ViewPagerViewHolder(view)
     }
 

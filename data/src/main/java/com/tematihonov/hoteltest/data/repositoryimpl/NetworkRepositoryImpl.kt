@@ -1,9 +1,9 @@
 package com.tematihonov.hoteltest.data.repositoryimpl
 
+import com.tematihonov.hoteltest.data.network.ApiService
 import com.tematihonov.hoteltest.domain.models.responceBooking.Booking
 import com.tematihonov.hoteltest.domain.models.responceRooms.Rooms
 import com.tematihonov.hoteltest.domain.models.responseHotel.Hotel
-import com.tematihonov.hoteltest.data.network.ApiService
 import com.tematihonov.hoteltest.domain.repository.NetworkRepository
 import retrofit2.Response
 

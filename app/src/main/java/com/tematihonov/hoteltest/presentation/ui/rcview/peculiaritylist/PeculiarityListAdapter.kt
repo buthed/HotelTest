@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tematihonov.hoteltest.databinding.ItemPeculiarityBinding
 
-class PeculiarityListAdapter(): RecyclerView.Adapter<PeculiarityListAdapter.PeculiarityListViewHolder>() {
+class PeculiarityListAdapter() :
+    RecyclerView.Adapter<PeculiarityListAdapter.PeculiarityListViewHolder>() {
 
     var peculiarities: List<String> = emptyList()
         set(newValue) {
@@ -25,7 +26,10 @@ class PeculiarityListAdapter(): RecyclerView.Adapter<PeculiarityListAdapter.Pecu
         return PeculiarityListViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: PeculiarityListAdapter.PeculiarityListViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: PeculiarityListAdapter.PeculiarityListViewHolder,
+        position: Int,
+    ) {
         val peculiarity = peculiarities[position]
         with(holder.binding) {
             peculiarityText.text = peculiarity
